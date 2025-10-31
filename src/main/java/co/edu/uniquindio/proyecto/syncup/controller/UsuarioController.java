@@ -26,6 +26,7 @@ public class UsuarioController {
         return usuarioService.guardarUsuario(usuario);
     }
 
+
     @DeleteMapping("/{id}")
     public void eliminarUsuario(@PathVariable Long id) {
         usuarioService.eliminarUsuario(id);

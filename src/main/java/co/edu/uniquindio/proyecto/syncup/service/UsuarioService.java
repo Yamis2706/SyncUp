@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyecto.syncup.service;
 import co.edu.uniquindio.proyecto.syncup.model.Usuario;
 import co.edu.uniquindio.proyecto.syncup.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -14,15 +15,16 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public List<Usuario> listarUsuarios() {
-        return usuarioRepository.findAll();
+    public Usuario guardarUsuario(Usuario usuario) {
+        return usuarioRepository.save(usuario); // 👈 ESTE RETURN es clave
     }
 
-    public Usuario guardarUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario);
+    public List<Usuario> listarUsuarios() {
+        return usuarioRepository.findAll();
     }
 
     public void eliminarUsuario(Long id) {
         usuarioRepository.deleteById(id);
     }
 }
+

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.syncup.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,12 +17,16 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonProperty("nombre")
     @Column(nullable = false, length = 100)
     private String nombre;
 
+    @JsonProperty("correo")
     @Column(nullable = false, unique = true, length = 150)
     private String correo;
 
-    @Column(nullable = false)
+    @JsonProperty("contrasena")
+    @Column(nullable = false, length = 150)
     private String contrasena;
 }
+
