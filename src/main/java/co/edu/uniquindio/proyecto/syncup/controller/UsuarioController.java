@@ -33,6 +33,19 @@ public class UsuarioController {
         usuarioService.eliminarUsuario(id);
     }
 
+    // ✅ Obtener un usuario por ID
+    @GetMapping("/{id}")
+    public Usuario obtenerUsuario(@PathVariable Long id) {
+        return usuarioService.obtenerUsuarioPorId(id);
+    }
+
+    // ✅ Actualizar un usuario existente
+    @PutMapping("/{id}")
+    public Usuario actualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuarioActualizado) {
+        return usuarioService.actualizarUsuario(id, usuarioActualizado);
+    }
+
+
     @PostMapping("/login")
     public String login(@RequestBody LoginRequest loginRequest) {
         try {
