@@ -1,5 +1,6 @@
 package co.edu.uniquindio.proyecto.syncup.controller;
 
+import co.edu.uniquindio.proyecto.syncup.dto.LoginRequest;
 import co.edu.uniquindio.proyecto.syncup.model.Usuario;
 import co.edu.uniquindio.proyecto.syncup.service.UsuarioService;
 import org.springframework.web.bind.annotation.*;
@@ -31,4 +32,15 @@ public class UsuarioController {
     public void eliminarUsuario(@PathVariable Long id) {
         usuarioService.eliminarUsuario(id);
     }
+
+    @PostMapping("/login")
+    public String login(@RequestBody LoginRequest loginRequest) {
+        try {
+            Usuario usuario = usuarioService.login(loginRequest.getCorreo(), loginRequest.getContrasena());
+            return "Inicio de sesión exitoso para: " + usuario.getNombre();
+        } catch (RuntimeException e) {
+            return "Credenciales inválidas";
+        }
+    }
+
 }

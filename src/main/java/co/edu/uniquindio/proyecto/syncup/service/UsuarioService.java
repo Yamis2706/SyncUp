@@ -26,5 +26,15 @@ public class UsuarioService {
     public void eliminarUsuario(Long id) {
         usuarioRepository.deleteById(id);
     }
+
+    public Usuario login(String correo, String contrasena) {
+        Usuario usuario = usuarioRepository.findByCorreo(correo);
+        if (usuario != null && usuario.getContrasena().equals(contrasena)) {
+            return usuario;
+        } else {
+            throw new RuntimeException("Credenciales inválidas");
+        }
+    }
+
 }
 
